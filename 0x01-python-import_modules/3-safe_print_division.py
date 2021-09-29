@@ -4,8 +4,8 @@ def safe_print_division(a, b):
     try:
         total =  a / b
 
-    except ZeroDivisionError:
-        total = None
+    except:
+        total = "None"
 
     finally:
         print("Inside total: {}".format(total))
