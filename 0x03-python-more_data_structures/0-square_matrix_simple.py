@@ -1,4 +1,6 @@
 #!/usr/bin/python3
 def square_matrix_simple(matrix=[]):
-    if matrix:
-        return [[i**2 for i in row] for row in (matrix)]
+    neo = []
+    for x in matrix:
+        neo.append(list(map(lambda num ** 2, x)))
+    return (neo)
