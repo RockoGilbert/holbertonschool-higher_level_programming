@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 def uniq_add(my_list=[]):
-    total = 0
-    my_set = set(my_list)
-    for x in my_set:
-        total += x
-    return sum
+    newList = []
+    store = 0
+    for x in my_list:
+        if x not in newList:
+            newList.append(x)
+    for n in newList:
+        store += n
+    return store
