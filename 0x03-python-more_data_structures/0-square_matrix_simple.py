@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-def square_matrix_simple(matrix=[]):
-    neo = []
-    for x in matrix:
-        neo.append(list(map(lambda num ** 2, x)))
-    return (neo)
+def search_replace(my_list, search, replace):
+    new_list = my_list[:]
+    for x in range(len(new_list)):
+        if new_list[x] == search:
+            new_list[x] = replace
+            return new_list
