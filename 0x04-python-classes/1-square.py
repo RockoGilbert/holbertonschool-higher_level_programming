@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Defines a class based on square size"""
+"""Define a class based on square size"""
 
 class Square:
     """create an object and using __init__ to set size"""
@@ -11,4 +11,3 @@ class Square:
             raise TypeError("size must be an integer")
         if size < 0:
             raise ValueError("size must be >= 0")
-
