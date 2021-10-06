@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Define a class based on square size"""
 
+
 class Square:
     """create an object and using __init__ to set size"""
     def __init__(self, size=0):
