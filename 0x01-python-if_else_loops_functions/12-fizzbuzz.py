@@ -5,10 +5,10 @@ def fizzbuzz():
         if i % 3 != 0 and i % 5 != 0:
             print(i, end='')
 
-    else:
-        if i % 3 == 0:
-            print('Fizz', end='')
-        if i % 5 == 0:
-            print('Buzz', end='')
+        else:
+            if i % 3 == 0:
+                print('Fizz', end='')
+            if i % 5 == 0:
+                print('Buzz', end='')
 
     print('', end=' ')
