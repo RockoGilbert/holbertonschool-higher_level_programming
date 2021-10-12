@@ -1,3 +1,10 @@
+The ``add_integer`` module
+
+
+Using ``add_integer``
+
+
+
 Import ''add_integer'' from '0-add_integer'' module:
 
         >>> add_integer = __import__('0-add_integer').add_integer
