@@ -27,6 +27,10 @@ ADDS FLOAT WITH NEGATIVE:
     >>> add_integer(100.3, -2)
     98
 
+ADDS FLOAT WITH POSITIVE:
+    >>> add_integer(100.3, 2)
+    102
+
 STRING:
     >>> add_integer(4, "School")
     Traceback (most recent call last):
