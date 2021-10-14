@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""List available attributes and methods"""
 
 
 def lookup(obj):
