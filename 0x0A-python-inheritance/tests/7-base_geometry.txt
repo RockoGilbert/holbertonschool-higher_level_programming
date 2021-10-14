@@ -1,0 +1,73 @@
+Import ''7-base_geometry'' module:
+
+	>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Tests:
+
+	>>> bg = BaseGeometry()
+	>>> bg.integer_validator("Lyndon", 33)
+	>>> bg.integer_validator("Lyndon", 3.3)
+	Traceback (most recent call last):
+	...
+	TypeError: Lyndon must be an integer
+
+	>>> bg.integer_validator("Lyndon", -3)
+	Traceback (most recent call last):
+	...
+	ValueError: Lyndon must be greater than 0
+
+	>>> bg.integer_validator("Lyndon", [3])
+	Traceback (most recent call last):
+	...
+	TypeError: Lyndon must be an integer
+
+	>>> bg.integer_validator("Lyndon", 0)
+	Traceback (most recent call last):
+	...
+	ValueError: Lyndon must be greater than 0
+
+	>>> bg.integer_validator("Lyndon", [3, 4])
+	Traceback (most recent call last):
+	...
+	TypeError: Lyndon must be an integer
+
+	>>> bg.integer_validator("Lyndon", None)
+	Traceback (most recent call last):
+	...
+	TypeError: Lyndon must be an integer
+
+	>>> bg.integer_validator("Lyndon", True)
+	Traceback (most recent call last):
+	...
+	TypeError: Lyndon must be an integer
+
+	>>> bg.integer_validator()
+	Traceback (most recent call last):
+	...
+	TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+	>>> bg.integer_validator("foster", (7,))
+	Traceback (most recent call last):
+	...
+	TypeError: foster must be an integer
+
+	>>> bg.integer_validator("foster")
+	Traceback (most recent call last):
+	...
+	TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+	>>> bg.integer_validator("foster", {3, 4})
+	Traceback (most recent call last):
+	...
+	TypeError: foster must be an integer
+
+	>>> bg.integer_validator("foster", "4")
+	Traceback (most recent call last):
+	...
+	TypeError: foster must be an integer
+
+	>>> bg.area()
+	Traceback (most recent call last):
+	...
+	Exception: area() is not implemented
+	>>>
