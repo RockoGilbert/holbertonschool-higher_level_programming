@@ -4,7 +4,7 @@
 
 def write_file(filename="", text=""):
     """Writes and counts the characters of a string"""
-    
+
     with open(filename, "w", encoding="utf-8") as writeFile:
         writeFile.write(text)
         return len(text)
