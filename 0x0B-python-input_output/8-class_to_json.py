@@ -3,10 +3,10 @@
 
 
 def class_to_json(obj):
- """Attributes
+    """Attributes
 
-    Args: 
+    Args:
         obj: obj to return the __dict__ of
 
- """
+    """
 return obj.__dict__
