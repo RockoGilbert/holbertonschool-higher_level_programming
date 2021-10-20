@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-"""Returns the dictionary description or an object"""
+'''dic description of JSON serialized object'''
 
 
 def class_to_json(obj):
-    """Attributes
+    '''dic description of JSON serialized object
 
     Args:
         obj: obj to return the __dict__ of
-
-    """
-return obj.__dict__
+    '''
+    return obj.__dict__
