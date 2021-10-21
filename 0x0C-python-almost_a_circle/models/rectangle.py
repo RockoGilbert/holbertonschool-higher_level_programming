@@ -1,112 +1,71 @@
 #!/usr/bin/python3
-"""This module defines a class Rectangle"""
-
-
+'''Rectangle class inherits from Base'''
 from models.base import Base
 
 
 class Rectangle(Base):
-    """Defining Rectangle that inherits from Base"""
+    '''Rectangle class inherits from Base'''
 
     def __init__(self, width, height, x=0, y=0, id=None):
         super().__init__(id)
-
-        self.integerValidator("width", width)
-        self.__width = width
-        self.integerValidator("height", height)
-        self.__height = height
-        self.xyValidator("x", x)
-        self.__x = x
-        self.xyValidator("y", y)
-        self.__y = y
-
-    # Getter for width
+        self.__width = self.verify_WH("width", width)
+        self.__height = self.verify_WH("height", height)
+        self.__x = self.verify_XY("x", x)
+        self.__y = self.verify_XY("y", y)
 
     @property
     def width(self):
         return self.__width
 
-    # Setter for width w/ validator
-
     @width.setter
-    def width(self, value):
-        self.integerValidator("width", value)
-        self.__width = value
-
-    # Getter for height
+    def width(self, val):
+        self.__width = self.verify_WH("width", val)
 
     @property
     def height(self):
         return self.__height
 
-    # Setter for height w/ validator
-
     @height.setter
-    def height(self, value):
-        self.integerValidator("height", value)
-        self.__height = value
-
-    # Getter for x"""
+    def height(self, val):
+        self.__height = self.verify_WH("height", val)
 
     @property
     def x(self):
         return self.__x
 
-    # Setter for x w/ validator
-
     @x.setter
-    def x(self, value):
-        self.xyValidator("x", value)
-        self.__x = value
-
-    # Getter for y"""
+    def x(self, val):
+        self.__x = self.verify_XY("x", val)
 
     @property
     def y(self):
         return self.__y
 
-    # Setter for y w/ validator
-
     @y.setter
-    def y(self, value):
-        self.xyValidator("y", value)
-        self.__y = value
-
-    # Gets and returns area
+    def y(self, val):
+        self.__y = self.verify_XY("y", val)
 
     def area(self):
-        return self.__height * self.__width
-
-    # Displays the rectangle
+        return self.width * self.height
 
     def display(self):
-        for row in range(self.__y):
-            print("")
-        for col in range(self.__height):
-            print(" "*self.__x, end="")
-            print("#"*self.__width)
-
-    # Overrides string rep to what we want
+        if self.y:
+            print("\n"*(self.y - 1))
+        print("\n".join(" "*self.x+"#"*self.width for i in range(self.height)))
 
     def __str__(self):
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
                 self.id, self.x, self.y, self.width, self.height)
 
-    # Assigns an argument to each attribute
-
     def update(self, *args, **kwargs):
-        Attributes = ['id', 'width', 'height', 'x', 'y']
-        if args and len(args) != 0:
-            for key in range(len(args)):
-                setattr(self, Attributes[key], args[key])
-
+        attr = ('id', 'width', 'height', 'x', 'y')
+        if len(args) != 0:
+            for i in range(len(args)):
+                setattr(self, attr[i], args[i])
         else:
-            for item in kwargs:
-                setattr(self, item, kwargs[item])
-
-    # Dictionary rep of the class
+            for key in kwargs:
+                setattr(self, key, kwargs[key])
 
     def to_dictionary(self):
-        Dic = {'id': self.id, 'width': self.width,
-               'height': self.height, 'x': self.x, 'y': self.y}
-        return Dic
+        return {key.replace('_Rectangle__', ''): vars(self)[key]
+                for key in vars(self)}
