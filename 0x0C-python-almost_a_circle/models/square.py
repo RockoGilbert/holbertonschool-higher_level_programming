@@ -12,7 +12,6 @@ class Square(Rectangle):
         """initializing attr"""
         super().__init__(size, size, x, y, id)
 
-
     def __str__(self):
         """Overrides str"""
 
@@ -33,7 +32,6 @@ class Square(Rectangle):
         self.width = value
         self.height = value
 
-
     def update(self, *args, **kwargs):
         """Assigns arguments to each attr"""
 
@@ -45,7 +43,7 @@ class Square(Rectangle):
         else:
             for item in kwargs:
                 setattr(self, item, kwargs[item])
- 
+
     def to_dictionary(self):
         """Dict rep of class"""
 
