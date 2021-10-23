@@ -1,111 +1,85 @@
 #!/usr/bin/python3
-'''
-Rectangle class
-'''
-
-
+'''Rectangle class inherits from Base'''
 from models.base import Base
 
 
 class Rectangle(Base):
-    """Rectangle Class inherited from Base"""
+    '''Rectangle class inherits from Base'''
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """init for self width height x and y"""
-        self.width = width
-        self.height = height
-        self.x = x
-        self.y = y
+        '''init method for class'''
         super().__init__(id)
+        self.__width = self.verify_WH("width", width)
+        self.__height = self.verify_WH("height", height)
+        self.__x = self.verify_XY("x", x)
+        self.__y = self.verify_XY("y", y)
 
     @property
     def width(self):
-        """getter for width"""
+        '''width getter'''
         return self.__width
 
     @width.setter
-    def width(self, value):
-        """setter for width"""
-        if type(value) is not int:
-            raise TypeError("width must be an integer")
-        if value <= 0:
-            raise ValueError("width must be > 0")
-        self.__width = value
+    def width(self, val):
+        '''width setter'''
+        self.__width = self.verify_WH("width", val)
 
     @property
     def height(self):
-        """getter for height"""
+        '''height getter'''
         return self.__height
 
     @height.setter
-    def height(self, value):
-        """setter for height"""
-        if type(value) is not int:
-            raise TypeError("height must be an integer")
-        if value <= 0:
-            raise ValueError("height must be > 0")
-        self.__height = value
+    def height(self, val):
+        '''height setter'''
+        self.__height = self.verify_WH("height", val)
 
     @property
     def x(self):
-        """getter for x"""
+        '''x getter'''
         return self.__x
 
     @x.setter
-    def x(self, value):
-        """setter for x"""
-        if type(value) is not int:
-            raise TypeError("x must be an integer")
-        if value < 0:
-            raise ValueError("x must be >= 0")
-        self.__x = value
+    def x(self, val):
+        '''x setter'''
+        self.__x = self.verify_XY("x", val)
 
     @property
     def y(self):
-        """getter for y"""
+        '''y getter'''
         return self.__y
 
     @y.setter
-    def y(self, value):
-        """setter for y"""
-        if type(value) is not int:
-            raise TypeError("y must be an integer")
-        if value < 0:
-            raise ValueError("y must be >= 0")
-        self.__y = value
+    def y(self, val):
+        '''y setter'''
+        self.__y = self.verify_XY("y", val)
 
     def area(self):
-        """Area for the rectangle"""
-        return self.__width * self.__height
+        '''Return area of rectangle'''
+        return self.width * self.height
 
     def display(self):
-        """prints # characters"""
-        for horiz in range(self.__y):
-            print("")
-        for horiz in range(self.__height):
-            print(" " * self.__x, end="")
-            print("#" * self.__width)
+        '''Print a representation of the rect in stdout using #'''
+        if self.y:
+            print("\n"*(self.y - 1))
+        print("\n".join(" "*self.x+"#"*self.width for i in range(self.height)))
 
     def __str__(self):
-        """overrides the str method"""
-        return("[Rectangle] ({}) {}/{} - {}/{}".format(
-            self.id, self.__x, self.__y, self.__width, self.__height))
+        '''str representation of obj'''
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+                self.id, self.x, self.y, self.width, self.height)
 
     def update(self, *args, **kwargs):
-        """assigns arg to each attr"""
-        a_list = ["id", "width", "height", "x", "y"]
-        if args and args[0] is not None:
-            for rang in range(len(args)):
-                setattr(self, a_list[rang], args[rang])
+        '''Set values of self based on args or kwargs'''
+        attr = ('id', 'width', 'height', 'x', 'y')
+        if len(args) != 0:
+            for i in range(len(args)):
+                setattr(self, attr[i], args[i])
+        else:
+            for key in kwargs:
+                setattr(self, key, kwargs[key])
 
     def to_dictionary(self):
-        """returns dictionary rep"""
-        the_dict = {}
-
-        the_dict['id'] = self.id
-        the_dict['width'] = self.width
-        the_dict['height'] = self.height
-        the_dict['x'] = self.__x
-        the_dict['y'] = self.__y
-
-        return the_dict
+        '''Return dict of obj values'''
+        return {key.replace('_Rectangle__', ''): vars(self)[key]
+                for key in vars(self)}
