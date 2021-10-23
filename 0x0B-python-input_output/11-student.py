@@ -16,9 +16,7 @@ class Student:
     def to_json(self, attrs=None):
         """retrieves dictonary reps of student class"""
 
-
         strs = {}
-
 
         if attrs is not None:
             for varis in attrs:
@@ -27,7 +25,6 @@ class Student:
                 return strs
             else:
                 return vars(self)
-
 
     def reload_from_json(self, json):
         self.__dict__ = json
