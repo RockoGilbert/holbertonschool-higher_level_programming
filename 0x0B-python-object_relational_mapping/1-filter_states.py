@@ -2,23 +2,22 @@
 """List all names that start with N"""
 
 import MySQLdb
-import sys
+from sys import argv
 
-def main():
-    conn = MySQLdb.connect(
+if __name__ == '__main__':
+    """Access to the database"""
+    db = MySQLdb.connect(
         host="localhost",
         port=3306,
         user=sys.argv[1],
         passwd=sys.argv[2],
         db=sys.argv[3]
     )
-    cur = conn.cursor()
-    query = "SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY states.id ASC"
-    cur.execute(query)
-    row = cur.fethcall()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states\
+    WHERE name LIKE BINARY 'N%' ORDER BY states.id ASC")
+    for row in cur.fethcall():
+        print(row)
 
     cur.close()
     conn.close()
-
-    if __name__ == '__main__':
-        main()
