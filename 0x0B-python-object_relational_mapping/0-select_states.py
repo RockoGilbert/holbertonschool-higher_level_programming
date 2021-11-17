@@ -1,33 +1,27 @@
 #!/usr/bin/python3
-""" lists all states from the database hbtn_0e_0_usa """
-
-from sys import argv
+"""Lists all state from the database hbtn_0e_0_usa"""
 import MySQLdb
+import sys
+
+
+def get_states():
+    """Take arguments argv to list from database
+    Arguments:
+        argv[1]: mysql username
+        argv[2]: mysql password
+        argv[3]: database name
+    """
+    conn = MySQLdb.connect(host="localhost", port=3306, user=sys.argv[1],
+                           passwd=sys.argv[2], db=sys.argv[3])
+
+    cur = conn.cursor()
+
+    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    for row in cur.fetchall():
+        print(row)
+    cur.close()
+    conn.close()
+
 
 if __name__ == "__main__":
-
-    try:
-        args = {
-            "user": argv[1],
-            "passwd": argv[2],
-            "db": argv[3],
-            "host": "localhost",  # This is default MySQLdb value
-            "port": 3306        # This is default MySQLdb value
-        }
-        QUERY = "SELECT * FROM states ORDER BY states.id"
-
-        # Connect to database, execute QUERY
-        db_connection = MySQLdb.connect(**args)
-        cursor = db_connection.cursor()
-        cursor.execute(QUERY)
-        tuples = cursor.fetchall()
-
-        # Clean up
-        cursor.close()
-        db_connection.close()
-
-        # Print result
-        for tuple in tuples:
-            print(tuple)
-    except:
-        pass
+    get_states()
