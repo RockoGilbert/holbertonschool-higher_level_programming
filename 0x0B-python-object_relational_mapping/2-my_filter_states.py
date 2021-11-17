@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" lists state from db """
+""" A script that takes in an argumetn and displays all values in the states database where name matches the argument"""
 
 from sys import argv
 import MySQLdb
