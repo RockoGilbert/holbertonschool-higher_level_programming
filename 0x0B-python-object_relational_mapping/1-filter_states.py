@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""List all names that start with N"""
+"""List all name that start with N"""
 
 import MySQLdb
 from sys import argv
