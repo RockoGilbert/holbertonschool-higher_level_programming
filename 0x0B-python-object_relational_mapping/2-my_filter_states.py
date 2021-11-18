@@ -1,28 +1,34 @@
 #!/usr/bin/python3
-'''
-takes in an argument and displays all values
-in the states table of hbtn_0e_0_usa where
-name matches the argument.
-'''
-import sys
+""" lists state from db """
+
+from sys import argv
 import MySQLdb
 
+if __name__ == "__main__":
+    try:
+        args = {
+            "user": argv[1],
+            "passwd": argv[2],
+            "db": argv[3],
+            "host": "localhost",  # This is default MySQLdb value
+            "port": 3306        # This is default MySQLdb value
+        }
+        state = argv[4]
+        QUERY = "SELECT * FROM states WHERE BINARY(name) = '{}'"
+        QUERY = QUERY.format(state)
 
-if __name__ == '__main__':
-    conn = MySQLdb.connect(
-        host="localhost", port=3306, user=sys.argv[1],
-        passwd=sys.argv[2], db=sys.argv[3])
+        # Connect to database, execute QUERY
+        db_connection = MySQLdb.connect(**args)
+        cursor = db_connection.cursor()
+        cursor.execute(QUERY)
+        tuples = cursor.fetchall()
 
-    cur = conn.cursor()
-    query = "SELECT * FROM states WHERE BINARY name = '{}'\
-    ORDER BY id ASC".format(sys.argv[4])
+        # Clean up
+        cursor.close()
+        db_connection.close()
 
-    cur.execute(query)
-
-    query_rows = cur.fetchall()
-
-    for row in query_rows:
-        print(row)
-
-    cur.close()
-    conn.close()
+        # Print result
+        for tuple in tuples:
+            print(tuple)
+    except:
+        pass
