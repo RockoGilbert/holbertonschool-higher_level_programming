@@ -16,8 +16,8 @@ if __name__ == '__main__':
     cur = db.cursor()
     cur.execute("SELECT * FROM states\
     WHERE name LIKE BINARY 'N%' ORDER BY states.id ASC")
-    for row in cur.fethcall():
+    for row in cur.fetchall():
         print(row)
 
     cur.close()
-    conn.close()
+    db.close()
