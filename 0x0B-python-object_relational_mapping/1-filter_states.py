@@ -7,9 +7,9 @@ from sys import argv
 if __name__ == '__main__':
     """Access to the database"""
     db = MySQLdb.connect(
-        user=sys.argv[1],
-        passwd=sys.argv[2],
-        db=sys.argv[3],
+        user=argv[1],
+        passwd=argv[2],
+        db=argv[3],
         host="localhost",
         port=3306
     )
