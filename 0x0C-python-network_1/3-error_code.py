@@ -1,18 +1,17 @@
-#!/usr/bin/python3
-"""
-request a body if error display statue code
-"""
+=#!/usr/bin/python3
+""" takes in a URL, sends a request (that fails) and displays the error """
 
-if __name__ == '__main__':
-    import urllib.request
-    import urllib.error
-    import sys
-    url = sys.argv[1]
+from urllib.error import HTTPError
+from urllib.request import urlopen
+from sys import argv
 
-    req = urllib.request.Request(url)
+
+if __name__ == "__main__":
+
+    url = argv[1]
+
     try:
-        with urllib.request.urlopen(req) as response:
-            info = response.read()
-            print(info.decode("ascii"))
-    except urllib.error.HTTPError as e:
+        with urlopen(url) as response:
+            print(response.read().decode("utf-8"))
+    except HTTPError as e:
         print("Error code: {}".format(e.code))
