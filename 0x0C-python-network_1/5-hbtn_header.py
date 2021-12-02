@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-same as 1-hbtn_header with requests module
+same as 1-hbtn_header with request module
 """
 
 if __name__ == '__main__':
