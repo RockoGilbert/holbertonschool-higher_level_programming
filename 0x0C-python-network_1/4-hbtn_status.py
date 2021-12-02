@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-same as 0-hbtn_status with requests model
+same as 0-hbtn_status with request model
 """
 
 if __name__ == '__main__':
