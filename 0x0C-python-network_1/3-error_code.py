@@ -1,17 +1,12 @@
-=#!/usr/bin/python3
-""" takes in a URL, sends a request (that fails) and displays the error """
-
-from urllib.error import HTTPError
-from urllib.request import urlopen
+#!/usr/bin/python3
+""" error manage module """
+import urllib.request
+import urllib.parse
 from sys import argv
 
-
 if __name__ == "__main__":
-
-    url = argv[1]
-
     try:
-        with urlopen(url) as response:
-            print(response.read().decode("utf-8"))
-    except HTTPError as e:
-        print("Error code: {}".format(e.code))
+        with urllib.request.urlopen(argv[1]) as response:
+            print(response.read().decode('utf8'))
+    except urllib.error.HTTPError as err:
+        print("Error code: {}".format(err.getcode()))
