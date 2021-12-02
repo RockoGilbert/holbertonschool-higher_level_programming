@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Fetches the URL: https://intranet.hbtn.io/status
+"""Fetchs the URL: https://intranet.hbtn.io/status
 """
 
 from urllib.request import Request, urlopen
