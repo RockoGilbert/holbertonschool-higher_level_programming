@@ -6,5 +6,5 @@ if (sq) {
     console.log('X'.repeat(sq));
   }
 } else {
-    console.log('Missing size');
+  console.log('Missing size');
 }

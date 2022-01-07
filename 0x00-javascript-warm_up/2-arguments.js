@@ -1,5 +1,5 @@
 #!/usr/bin/node
-//Write a script that prints a message depending on the # of passed args.
+// Write a script that prints a message depending on the # of passed args.
 const arrArgs = process.argv;
 const len = arrArgs.length;
 if (len === 2) {
