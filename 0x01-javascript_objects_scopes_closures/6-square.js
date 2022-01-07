@@ -1,16 +1,16 @@
 #!/usr/bin/node
-// Print function with custom characters to represent the square
+const Rectangle = require('./4-rectangle');
 
-const oldSq = require('./5-square');
-
-module.exports = class square extends oldSq {
-  charPrint (c) {
-    let l = 'X';
-    if (c !== undefined) {
-      l = c;
-    }
-    for (let i = 0; i < this.height; i++) {
-      console.log(c.repeat(this.height));
-    }
+class Square extends Rectangle {
+  constructor (size) {
+    super(size, size);
+    this.size = size;
   }
-};
+
+  charPrint (c) {
+    this.cell = c || 'X';
+    this.print();
+  }
+}
+
+module.exports = Square;
