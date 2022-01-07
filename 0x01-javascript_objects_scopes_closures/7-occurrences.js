@@ -1,12 +1,11 @@
 #!/usr/bin/node
-// A function that retunr the number of occurences in it
-
 exports.nbOccurences = function (list, searchElement) {
-  const num = 0;
-  for (let i = 0; i < list.length; i++) {
-    if (list[i] === searchElement) {
-      n++;
+  let occur = 0;
+  let item;
+  for (item of list) {
+    if (item === searchElement) {
+      occur += 1;
     }
   }
-  return n;
+  return occur;
 };
