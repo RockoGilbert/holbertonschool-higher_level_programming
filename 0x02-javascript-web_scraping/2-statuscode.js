@@ -1,4 +1,5 @@
 #!/usr/bin/node
+// Status codes
 
 const request = require('request');
 
