@@ -4,8 +4,8 @@ require('request').get(process.argv[2], function (err, r, body) {
   if (err) {
     console.log(err);
   } else {
-    let res = {};
-    let temp = JSON.parse(body);
+    const res = {};
+    const temp = JSON.parse(body);
     for (let i = 0; i < temp.length; i++) {
       if (temp[i].completed) {
         if (!(temp[i].userId in res)) {
